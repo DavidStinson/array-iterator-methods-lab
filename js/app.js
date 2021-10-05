@@ -12,7 +12,7 @@ const inventors = [
   { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
   { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
   { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
-];
+]
 
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
@@ -24,7 +24,7 @@ const inventorsBornInThe1500s = inventors.filter(function(inventor){
   return false
 })
 
-console.log(inventorsBornInThe1500s)
+console.log("1.", inventorsBornInThe1500s)
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors' first and last names
@@ -33,35 +33,39 @@ const firstAndLastNameOfInventors = inventors.map(function(inventor) {
   return inventor.first + " " + inventor.last
 })
 
-console.log(firstAndLastNameOfInventors);
+console.log("2.", firstAndLastNameOfInventors)
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
 
-const inventorsByBirthdate = inventors.sort(function (inventorA, inventorB) {
-    return inventorB.year < inventorA.year
+const inventorsOne = [...inventors]
+
+const inventorsByBirthdate = inventorsOne.sort(function (inventorA, inventorB) {
+    return inventorA.year - inventorB.year
 })
 
-console.log(inventorsByBirthdate)
+console.log("3.", inventorsByBirthdate)
 
 // 4. Sort the inventors by years lived
 
-let inventorsByDeathAge = inventors.sort(function (inventorA, inventorB) {
+const inventorsTwo = [...inventors]
+
+const inventorsByDeathAge = inventorsTwo.sort(function (inventorA, inventorB) {
     inventorADeathAge = inventorA.passed - inventorA.year
     inventorBDeathAge = inventorB.passed - inventorB.year
-    return inventorBDeathAge > inventorADeathAge
+    return inventorADeathAge - inventorBDeathAge
 })
 
-console.log(inventorsByDeathAge);
+console.log("4.", inventorsByDeathAge)
 
 // Array.prototype.reduce()
 // 5. How many years did all the inventors live?
 
 const totalYearsAllInventorsLived = inventors.reduce(function(acc, inventor){
-   return acc + (inventor.passed - inventor.year);
+   return acc + (inventor.passed - inventor.year)
 },0)
 
-console.log(parseInt(totalYearsAllInventorsLived))
+console.log("5.", parseInt(totalYearsAllInventorsLived))
 
 // or...
 
@@ -70,7 +74,7 @@ console.log(parseInt(totalYearsAllInventorsLived))
 //   return acc + inventorDeathAge;
 // }, 0)
 
-// console.log(totalYearsAllInventorsLived);
+// console.log("5." totalYearsAllInventorsLived);
 
 const people = [
   'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry',
@@ -84,51 +88,54 @@ const people = [
   'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank',
   'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony',
   'Blake, William'
-];
+]
 
-// Array.prototype.sort()
-// 6. Sort the people array alphabetically by last name
+// Array.prototype.map()
+// 6. Map the people array such that the new array consists of strings with the names formatted as "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
 
-const peopleByLastName = people.sort()
 
-console.log(peopleByLastName)
+const peopleFirstLastName = people.map(person => {
+  return person.split(", ").reverse().join(" ")
+})
+
+console.log("6.", peopleFirstLastName)
 
 const data = [
   'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
   'bike', 'walk', 'car', 'van', 'car', 'truck'
-];
+]
 
 // Array.prototype.reduce()
 // 7. Count the number of instances for each of the data items.
 // Hint:  Return an object where the keys are 'car', 'truck', etc. and the values are the count.
 
 const vehicles = data.reduce((acc, vehicle) => {
-  acc[vehicle] = acc[vehicle] ? acc[vehicle] + 1 : 1;
-  return acc;
-}, {});
+  acc[vehicle] = acc[vehicle] ? acc[vehicle] + 1 : 1
+  return acc
+}, {})
 
-console.log(vehicles);
+console.log("7.", vehicles)
 
 const devs = [
   { name: 'Wes', year: 1988 },
   { name: 'Kait', year: 1986 },
   { name: 'Irv', year: 1970 },
   { name: 'Lux', year: 2015 }
-];
+]
 
 // Array.prototype.some()
 // 8. Is at least one person 19 or older?
 
 const devsOver19 = devs.some((dev) => 2021 - dev.year > 19)
 
-console.log(devsOver19);
+console.log("8.", devsOver19)
 
 // Array.prototype.every()
 // 9. Is everyone 19 or older?
 
 const allDevsOver19 = devs.every((dev) => 2021 - dev.year > 19)
 
-console.log(allDevsOver19);
+console.log("9.", allDevsOver19)
 
 const comments = [
   { text: 'Love this!', id: 523423 },
@@ -136,14 +143,14 @@ const comments = [
   { text: 'You are the best', id: 2039842 },
   { text: 'Ramen is my fav food ever', id: 123523 },
   { text: 'Nice Nice Nice!', id: 542328 }
-];
+]
 
 // Array.prototype.find()
 // 10. Find the comment with the id of 823423
 
 const comment823423 = comments.find((comment) => comment.id === 823423)
 
-console.log(comment823423);
+console.log("10.", comment823423)
 
 // Array.prototype.findIndex()
 // 11. Find the index of the comment with an id of 123523
@@ -152,4 +159,4 @@ const comment123523Index = comments.findIndex(
   (comment) => comment.id === 123523
 )
 
-console.log(comment123523Index);
+console.log("11.", comment123523Index)
