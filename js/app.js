@@ -166,14 +166,19 @@ const devs = [
 // Array.prototype.some()
 // 8. Is at least one person 19 or older?
 
-const devsOver19 = devs.some(dev => 2021 - dev.year > 19)
+// Grabbing the current year.
+const thisYear = new Date().getFullYear()
+
+// This method will work through time, but you could also hard code the date. 
+const devsOver19 = devs.some(dev => thisYear - dev.year >= 19)
 
 console.log('8.', devsOver19)
 
 // Array.prototype.every()
 // 9. Is everyone 19 or older?
 
-const allDevsOver19 = devs.every(dev => 2021 - dev.year > 19)
+// This method will work through time, but you could also hard code the date. 
+const allDevsOver19 = devs.every(dev => thisYear - dev.year >= 19)
 
 console.log('9.', allDevsOver19)
 
